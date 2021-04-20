@@ -1,0 +1,80 @@
+Now to close this lesson playing the go game is interesting. Synthesizing text to describe
+images is also interesting. But there are many other
+things that one might be concerned with that perhaps
+have more value in human life. And so
+another area where image analysis is very important is in fields like,
+radiology, opthamology, and dermatology in medicine. And so,
+medical doctors are very busy people. And some medical doctors spend
+a tremendous amount of time looking at images. Instead of talking and
+counseling patients. So one area where deep learning
+seems to offer significant opportunity is in the context of
+image analysis for medical imaging. And so, areas in which deep learning
+has shown tremendous promise is in ophthalmology, for example,
+in diabetic retinopathy, it's been demonstrated that
+convolutional neural networks can perform as well if not
+better than opthamologists. Similar performance has been manifested
+in dermatology and in radiology. So, one of the things as we close
+this lesson that is interesting, so recall that in the deep architecture,
+so what we're showing here
+is deep learning and in one of our previous lessons we
+talked about transfer learning. I talked about ImageNet in the fact that
+we have millions of labelled real images. And so on the top portion of this slide, I'm showing a set of images from ImageNet. And then on the top to the right of them, I'm showing a deep
+convolutional neural network. And so the question that you might ask is, as we look at the deep
+convolutional neural network, which is a sequence of
+convolutional filters acting upon an image at multiple
+layers at multiple scales. Is there something unique
+about medical images that would require us to only
+train on medical images? Or can we re-use the parameters
+of the model from the ImageNet and
+apply them to medical imaging? So this is actually very
+important because recall that one of the key aspects that has
+made deep learning work so effectively is the access to
+massive quantities of labeled data. So the ImageNet is an example. Millions of examples of images and
+corresponding labels. However, in medicine, this is actually
+very challenging, so if you think about, for example, dermatology, for
+us to build a deep learning algorithm for which we had millions of images,
+dermatological images, that were labelled. That would imply that we would
+have to have millions of images of various aspects of skin disease. And we would need medical
+doctors to label them. That would be a very expensive and
+time consuming process. So the question that one might ask
+is if we look at the architecture, that was designed for
+the ImageNet based upon natural images, can we transfer those filters to
+a model applied to dermatology or to ophthalmology, or to radiology? If the answer to that is yes, that would
+imply that the ability to apply this technology to other fields can be
+significantly advanced by leveraging the massive quantities of data that we
+have for natural scenes in the world, again based upon digital hand
+held cameras for example. And so the key thing I want to
+reflect by this slide is that it has been found that one can take
+a deep neural network designed for ImageNet, you can take that deep learning
+architecture and the parameters of that, and almost entirely transfer them
+to applications, for example, in for the analysis of diabetic
+retinopathy and ophthalmology. The rectangle is meant to show that
+we can take the weight of the model that were learned based upon ImageNet and
+transfer them to images that look ostensibly very different
+here from a confocal images. And then transfer those images,
+sorry, transfer those parameters in the rectangle and then only learned
+parameters at the top of a network, which are directly applicable
+to the confocal images. And so, consequently the number of
+parameters that we have to learn is significantly reduced, because instead of
+having to learn all of the parameters, we only learn for the medical images, the
+new parameters at the top of the network, and then we transfer all of
+the parameters from the ImageNet. This concept of transferring
+parameters from a model trained on ImageNet
+to a different images for example, in medical applications, this is a significant positive
+aspect of deep neural networks. Which has been proven to be
+very valuable in applying these technologies to new and
+different fields for which we may not have quite as much
+labeled data such as in medical imaging. So I close this lesson by showing some examples of digital pathology data. These are images of cells used in,
+for example, cancer diagnosis. This is another area where deep
+learning and deep convolutional neural networks are expected to have very
+very significant application. So as we close this lesson,
+the key thing to notice Is that this deep learning architecture,
+this convolutional neural network, is now being used across a wide array
+of different types of applications and different types of images, and
+is now producing performance which is often exceeding
+the performance of humans. The key thing is through this
+concept of transfer learning, many of the parameters
+across these arguably very different applications can be
+transferred almost directly. This concept of transfer
+is very powerful and will play an increasingly important role. As deep learning is applied to
+other fields of image analysis.

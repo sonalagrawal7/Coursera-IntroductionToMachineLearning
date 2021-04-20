@@ -1,0 +1,58 @@
+Hello, everyone. Welcome to the hands-on portion
+of the course. My name is Kevin Liang, I'm a PhD student advised by Professor Lawrence
+Carin here at Duke, and I'll be your instructor
+for these sections. In these parts, we'll walk through how to build
+the basic components of the neural networks we
+learned about during previous video
+lectures in Python. These sections are
+considered optional, but we strongly
+believe that working through these exercises
+is the best way to develop a thorough
+understanding just like in any other math or
+computer science course. We could actually build a
+neural networks in pure Python or with Python's numerical
+computation package, NumPy. However, we'd find these
+implementations to be slow both to write and to run. Although it's a great
+exercise if you want full mastery, in practice, we typically build deep
+learning models with one of a number of machine
+learning libraries. For this class, we'll
+be using PyTorch, the framework built primarily
+by Facebook AI Research. There are many advantages to using a library like PyTorch. First, many deep learning models have certain
+operations in common. Using something like
+PyTorch means we don't have to write all these
+functions to ourselves. Importantly though, a
+key difference between these libraries and the
+way we would probably implement them is that they are also written
+to be computationally efficient with the capability of utilizing graphical
+processing units or GPUs. Deep learning models can
+take a long time to train, and a GPU implementation can
+be the difference between a model training in hours and one that takes days or weeks. Additionally, as we'll
+see in the next module, almost all neural networks are learned through
+backpropagation, which requires taking gradients with respect to your network. These can be derived
+by hand and indeed, if you're using Python and NumPy, you would probably have
+to do that yourself. On the other hand,
+PyTorch's Autograd engine can do this differentiation
+for us automatically, which makes building
+models much easier. Finally, it's a really
+exciting time to be in machine learning right now with a very
+large community out there, researchers, professionals,
+and students. PyTorch has one of the fastest growing communities of users, and it's very common to find open-source implementations
+of state to art models, step-by-step tutorials
+with code examples, and active forums teaming with debugging advice
+or recent trends. Most of the materials for the hands-on sections
+are organized in Jupyter IPython notebooks with tax explanations and figures embedded between
+the cells of code. Before I direct you over to the first notebooks on
+setting up your environment, a couple brief comments. First, we're going to assume some basic familiarity
+with Python and NumPy. Check out the notebook,
+Python Prerequisites, and make sure you understand
+most of the sampler code. If you're a little
+rusty or you've never seen Python before, we recommend brushing
+up before attempting any of the hands-on
+sessions of this course. Second, while GPUs greatly accelerate the training process, not everyone has access
+to one's capable of handling the computation
+for deep learning models. As such, we'll be sticking to simpler problems that can
+be run with just CPUs. You'll find that writing
+for CPU computation is very similar to
+writing for GPUs. All right, that wraps
+up our introduction. Now, let's go to coding
+environment setup.
