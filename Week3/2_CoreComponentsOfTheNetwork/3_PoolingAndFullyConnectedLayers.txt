@@ -1,0 +1,61 @@
+Okay, so the next core component of
+the convolution neural network is called a pooling layer. And this is typically applied after the
+convolution and after the activation to reduce the size of the input that's passed
+up to subsequent layers of the network. This pooling reduces the computational
+complexity of the overall network, it makes it easier to train. It also combats overfitting and
+encourages some translational invariance. By translational invariance I mean, when
+you see a particular feature in one corner of an image, the neural network can still
+classify its identity, if it's in the top left-hand corner or in the middle of the
+image or in the bottom right hand corner. So no matter where that particular
+thing is translated within the image, the neural network can still
+figure out its identity. That's called translational invariance. So how does that occur? Well, the pooling step,
+the pooling layer has also a filter, sort of like a convolutional filter,
+except rather than doing convolution, it takes everything within the filter
+window and collapses it to a single value. So a maximum pool would take
+in this particular case, if you have a window size of 2 by 2,
+and a stride of 2, you would move a little 2 by 2 window over
+from the top left-hand corner to the top right-hand corner to the bottom left-hand
+corner to the bottom right-hand corner. And then each of those windows you
+would just take the max value and assign that max value to respect
+the position in the output. All right, so that should be clear here. So in the top left corner the max is 6, so 6 is moved over to
+the resulting output location. The max in the top
+right-hand corner is an 8, you move 8 over, 3 and
+4 respectively for the bottom corners. You can also take an average to
+help do this down sampling, but typically the maximum is used. And I mentioned that it provides some
+degree of translational invariance. And you can see that if I actually add
+a 6 here in the top left-hand corner, you can see that independent of where
+the 6 actually sits in that top left hand corner,
+the 6 is relayed to the output. Such that the neural network doesn't
+necessarily need to care about whether or not the 6 was in the top left of the top
+left corner, or the bottom right of the top left hand corner, if that
+information is potentially not useful for doing the ultimate classification. So the max pooling picks out strong
+activations with some position independence. Okay, so in typical neural network we
+build on the things we've just gone over, so you have the convolutions and the convolutional layer
+to build up feature maps. There is activations, which aren't
+pictured here, after those convolutions, and then there's a max pooling step,
+which down samples the feature maps. And then there's subsequent convolutions, and those operations are stacked over and
+over again to build up high level representations
+of the features within the image. How are these high level features
+processed to arrive at a final classification? Well, you just use a multi layer
+perceptron akin to what you've learned before, and we call these
+layers fully connected layers. The simplest version of this would
+be a fully connected readout layer. Where if this was an MNIST task, so a
+digit classification, you'd have a single neuron for each of the output
+classes that you wanted to classify. And the way that you would connect
+them to the last pooling layer in this network would be by first flattening,
+or vectorizing the pooling layer, so in this case taking a 4
+by 4 by 20 volume, okay? The result of convolutions, activations,
+poolings, convolutions, activations, pooling, but that final representation,
+vectorizing it, okay? And then having each neuron in
+the readout layer fully connected, so it has weights now connected to
+all of the upstream elements in that vectorized representation
+of the pooling layer. And I'm just showing now connections for
+a single class of readout neuron for the zero. But the one has also connections to all of
+the upstream elements of that vectorized, high-level feature map,
+the result of that pooling layer. Just like in the multi-layer perceptron, you can also have multiple layers
+of fully connected neurons. So in this case, I'm just showing now
+an intermediate latent or hidden layer of neurons that are connected to the upstream
+elements in this pooling layer. And then the fully connected readout,
+class readout neurons, are then fully connected
+to that latent layer. And that provides some degree of meta
+feature representations that can help for these classification problems.

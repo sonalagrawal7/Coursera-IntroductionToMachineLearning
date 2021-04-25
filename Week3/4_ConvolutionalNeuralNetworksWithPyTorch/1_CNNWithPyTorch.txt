@@ -1,0 +1,8 @@
+Computer vision is a domain where deep learning
+has achieved some of its biggest successes with
+convolutional neural networks, commonly abbreviated as CNN's, constituting a major part of actually every state of
+the art vision model. In this section, you get to see the major building blocks
+of a CNN in PyTorch. Finally, we'll take a brief look at PyTorch's vision library. With Torch vision, we can easily load many of the state of the art CNN's and the pre-trained weights to use in your own applications. For the assignment, you'll
+be building your own CNN. You should see a slight
+increase in performance for the CNN versus a
+multi-layer perceptron. Play around with our architecture and see what you can achieve.

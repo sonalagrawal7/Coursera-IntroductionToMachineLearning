@@ -1,0 +1,98 @@
+Okay, now we're going to get into nuts and
+bolts of various components of the convolutional neural network,
+the core elements of the system that allow it to extract meaningful
+features from these images. So, we're going to walk through
+all of these convolutional layers, activation functions, pooling layers and
+fully connected layers. And so let's start with what goes
+on in the convolutional layer? You know about the convolution operation,
+but there are various features of the convolution that can be chosen by
+the user when designing the system. And that includes
+the convolutional filter size. The convolutional filter stride,
+which we'll define in a minute. And the convolutional filter number. So the filter size as shown here
+is just what it sounds like, so I have been showing convolutions
+in a 3 x 3 configurations. So the filter is 3 x 3 and that filter is run over the image
+to result in a feature map. But you can also change
+the size of that filter, so on the right there is
+a filter that is 5 x 5. And that results in a different feature
+map, because the filter can potentially be bigger and contain more information about
+the feature that it's searching for, okay? Typically, filters range
+from 3 x 3 to 7 x 7. And the rule of thumb is typically filters
+should be just large enough to capture small local features, for instance, edges
+and space, but not multiple of those. So you don't want to have a filter
+that can look for a circle and a triangle together, you want to let that correspondence
+occur in higher layers of the network. You can also define a filter stride,
+so filter stride. I've been showing you a stride of 1, what that means is that every time
+the filter moves, it moves down one pixel at a time during the convolution,
+resulting in a feature map. But, if you increase the stride, you skip more pixels as you're
+moving the filter over the image. So, for a stride of two,
+as you see on the right, the filter is moving two pixels at a time
+as it's being slid over the image. And the result of that is a feature
+map that has been downsized. All right, so, instead of
+the large feature map on the left. You get a smaller feature
+map on the right, and that's because you can't fit the filter
+as many times within the input image. So the stride helps reduce
+the computational load by downsampling the input. Typical strides that you would see in
+a neural network range from one to two, sometimes a little higher, but
+you really, one to two is very common. Okay, so filter number,
+we have potentially addressed before. So the idea here is that at each layer in
+the network, you can define the number of filters with a number of unique features
+that you're looking for in the input. So in this particular case,
+I'm showing six elementary building blocks in a toy example,
+or you might be looking for a hexagon, a rectangle, a circle,
+a triangle, a square, or a diamond. And to get all of those isolated in their
+own feature maps here shown as different colors, you need to have a filter for
+each one of those, right? And you're going to have many more than
+this, but the idea is the filter number determines the number of unique feature
+detectors that operate on the inputs. Okay, so those are the core
+components of the convolution layer. I just want to turn it back on
+its side and show you how for each of the filters that we use,
+we develop a feature volume, right, that's passed on to the higher
+layers of the network. So if we have a single filter here
+that's pulling on a particular feature. In this case a red feature map. But if we have another filter right here
+shown in purple that operates on the input and has its own unique feature map. And that continues for
+all the different filters that you have such as you're building up
+a volume of feature maps, a stack of feature maps that's fed on as
+input to the next layer in the network. Recall from the toy example earlier, that we had these layer 2 filters that
+we're operating on the feature maps. So the filters that then need to operate
+on the stack of feature maps need to also have an extent in depth as well. Such as they cover all of the feature maps
+that are being fed into that layers input. Okay, and
+that's also true of the very first layer. So even though you've been treating
+the input image, as just a single, potentially grayscale image,
+images all actually have color. And when they do have color,
+they have three channels, a red channel, a green channel and a blue channel. That helped define
+the color in each pixel. In the layer one filters,
+paying attention to that input image, need to have weights corresponding
+to each of those color channels. You can essentially think
+of those filters as having a 2D extent in each of the input
+channels such that there's a stack for each filter that goes down three for
+each of those channels. Okay, so in every case, these filters
+are operating over input volumes, primarily or at every stage. So even when you're feeding in the
+original image input, but especially after you've done a convolution, such as
+you've built up a stack of feature maps. Okay, so just to put this back in
+the context of our original animation, what we're really doing when we're
+sliding this filter over is that we have a small cube right at 3 x 3 now by 3 with
+weights corresponding to every single slice of the image input, every channel
+of the image input which might be a 9 x 9 x 3 image input, where that three
+corresponds to the three color channels. And the result of that, though, because we're still doing element
+wise multiplication and then a sum, is that we get a single 2D feature map for
+that particular filter. Okay, so this animation is now just
+summarizing everything that I've talked about for the operational and
+convolutional layer. So on the left you have an input volume,
+that in this case has three slices. So you can think of this as being
+an input image that has a red channel, a green channel, and a blue channel. We're calling that input I,
+and we're using now array notation that you might find in Python
+to sort of index all of these slices. So at the top you have I[ :, :, 0]. That just means all of the rows and all
+of the columns in the zero width, right? Or the zero index IE first slice of that
+input, which might be the red channel. And then below it we have I[ :, :,
+1], which might be the green channel. And input and I[:,
+:,2] which might be the blue channel. Okay, so what I want you to take away
+from this is that the filter, right? Zero so that's a single filter,
+W0, has weights that correspond to spacial positions in all
+the respective channels of the input. Okay so the filter is actually
+three dimensional, okay, it has a 2D extent and
+then an extent in depth, okay? But still what you're doing is getting
+doing an element wise multiplication between all of the values in the filters
+and their respective values in the inputs, summing those and depositing the results
+into a single value in the feature map corresponding to filter zero, okay? And for filter one, a second filter. You do exactly the same thing, but the result of that summation of that
+convolution is deposited at a respective position within a second feature map,
+feature map one.
