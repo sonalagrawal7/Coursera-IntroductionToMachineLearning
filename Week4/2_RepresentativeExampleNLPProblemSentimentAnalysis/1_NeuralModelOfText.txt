@@ -1,0 +1,150 @@
+So now that we have
+introduced this concept of word vectors or
+this concept of Word2Vec. Where we're going to take every word and
+we're going to map it to a vector, and we're going to do analysis in
+the space of these word vectors. And so again, the key idea here
+is that we take these words, which are just language,
+a part of a vocabulary and once we have mapped every word to
+a vector, we can then do analysis. We can do analysis on a computer,
+for example. So the key, now we want to spend some time
+on how we actually could learn these word vectors, how we can learn the mapping
+from a given word to a vector. So there many ways that this can be done. And our goal here is
+to learn the codebook. The codebook is a set of vectors
+where we have a mapping for every word in the vocabulary to a vector. And so
+our goal is to learn this codebook, and we would particularly like to do it in
+a way for which we do not need label data. So that means we do not need
+humans to read the documents, a priori and assign labels to them. And so
+we're going to assume access to a large or massive corpus of unlabeled documents,
+so just the raw documents. And so the idea is that if we
+learn these word embeddings or these word vectors, we would like to do so in such a way that each
+word in a given document is predictive of the presence
+of surrounding words. So most people if they understand
+language, if you gave them a particular word, they could tell you
+words that are related to that word. And therefore word that might be in
+the near vicinity of that word and a particular document. And so that's just a fundamental concept. And so
+what we are going to do is build models, such that those models are capable
+of taking a given word and making predictions about
+surrounding words. The way that this will be done will
+by utilizing these word vectors. And therefore good word vectors are word
+vectors for which using those vectors we're capable of predicting the words
+that might be surrounding a given word. So, that will actually be the fundamental
+concept that we're going to use to learn these word embeddings or
+these word vectors. So again, the idea is we
+want to seek the capacity to predict words surrounding a given word. So for example, let's consider
+word W sub n in a given document. So W sigma n just corresponds
+to the nth word the document. And let's let c(Wn) represent the code or the vector associated with word Wn. And so, as we've discussed elsewhere, we're going to assume that this
+is an M dimensional vector. An M dimensional code
+associated with that word. And so if that, if our codes are good,
+if the vectors that we have for our vocabulary are good,
+then using that vector, I should be able to predict
+words that are surrounding it. And the way that we can learn
+that is we can look at a corpus. We can look each word in that corpus and
+we can look at the words around each word. And what we would like to do is to
+learn word vectors in such a way that using those word vectors we
+can effectively predict which words might be in the vicinity
+of any given word. So the way that we're going to
+do this is using the tools that we have already developed,
+particularly the multi layer perceptron. So let's consider word Wn, and it's going
+to be composed of an m dimensional vector. So c(Wn) is the code
+associated with the word Wn, and c sub 1, c sub 2, through c sub m, correspond to the m
+components of that vector. Those m components of the vector,
+of the word vector are going to be the input to
+a multi layer perceptron. And so as we've studied elsewhere,
+what we do is, we take the input vector. The input vector here
+corresponds to the vector, the word vector of word w sub n and
+we're going to map that to a hidden vector which is d dimensional,
+h1 through hd. A d-dimensional latent vector. And now what we want to do is
+to take that d-dimensional hidden vector and
+then make a prediction about what words might be in
+the vicinity of word W sub n. So just to remind a little
+bit about the notation and a little bit about
+the multilayer perceptron. The way that this mapping
+from the word vector c1, c2, through the cm to the hidden
+vector h1 through hd. The way this is done, is that each
+of the component of the vectors c1, c2, through cm is multiplied by weights. So W1j corresponds to the weight between component 1 of the vector c1 and
+the jth hidden variable. So h sub j, so we multiply each
+component of the vector by a weight. We add a bias associated with
+the j hidden variable, b sub j. And then that, so we take the code, we take each element of the code and
+multiply it by a weight. We then add a bias, and then we add
+these upl and then the product and then sum is sent through a nonlinear
+function which we represent by g. Elsewhere we have looked
+at situations where g might be represented by a sigmoid
+function but there are other examples. For example, hyperbolic, tangent and
+others that can be used for g. And so to simplify on notation
+that we'll use elsewhere, we say that the hidden variables
+are represented by the code, c, which represents the vector
+associated with the word, multiplied by all of the weights
+which are represented here by w. Adding by sp then sending
+through a nonlinear function g, which ultimately gives
+us our hidden variables. This is the first layer in what we'll
+see is a multilayer perceptron. So examples that one might consider for
+that nonlinear functions of g. This is called a hyperbolic tangent,
+this is just one example. So what it does it maps a real variable x to a number between -1 and 1. And so what we're doing here
+concisely is we're taking the code, c, associated with the word vector. We multiply it times the matrix w, we add a bias,
+that process gives us a vector. Each component of that vector,
+is sent through a nonlinear function, which is here represented by
+the hyperbolic tangent which is then gives us our latent or
+hidden variable h. And so this function the hyperbolic
+tangent operates pointwise or separately on each
+component of the vector. And so this looks familiar,
+this is our multilayer perceptron. The output of the hidden variables
+h are then multiplied by another set of weights,
+which are represented by the matrix, U. And then ultimately at
+the top of this network, we're going to have V-1 outputs. Where V is the size of our vocabulary and
+as we'll discuss in a moment, this will become clear
+why we have V-1 outputs. But y1 through yV-1 correspond to V-1 numbers which are the output
+of this multilayer perceptron. And then just to kind of highlight
+how this is done in the same way that we did before. If we take each of the hidden units,
+h, if we look at the hidden vector which has hidden components,
+each component is multiplied by a weight. We then add a bias, and so,
+to write this concisely, we take U, which is our matrix of weights, we have a hidden vector h,
+we add the bias and then this gives us y. This is just a concise
+way of representing this. And so now what we want to
+do is to use this model to quantify the probability of word Wi, where Wi could be any
+word in our vocabulary. Wi represents the ith
+word in our vocabulary. So what we're interested
+in is the probability that the ith word wi would
+live in the neighborhood of the word (wn) which is
+represented by the codes C(Wn). And so what we're trying to do
+here is to build a model which predicts the presence of
+surrounding words of a given word. So Wn is a given word,
+is the nth word in our document. And then we're asking the question,
+what is the probability that the ith word in our vocabulary, w(i), what is the probability that it would
+be in the neighborhood of the nth word? And so the way that we're going to
+do this is by generalizing the concept that we previously used for
+logistic regression. So what we're going to do is we're
+going to take each of the outputs, y1, y2 through y V sub 1 for
+a vocabulary of size V. And we're going to set the Vth
+component Y sub v to zero. So we're going to always set
+the Vth component to zero. And then we're going to say
+that the probability that word, i, Wi, would be in the presence of the nth
+word is represented by this expression. This is called Softmax, and
+as we'll see in the moment it's a generalization
+of logistic regression. And, so what we're quantifying Is
+the probability that the ith word would be in the presence of the nth word. So the nth word is represented
+by this vector c1 through cm. And then the output of
+the model are going to give us the probability of this mapping. And so that operation at the top,
+at the end, to the right of the multilayer perceptron, this is something that we do often times, which allows us to quantify
+the output here of V variables. Where we have a vocabulary of size V,
+this is called the softmax function. The equation that you see at
+the bottom is the softmax function. The thing to notice about this
+function is that if we sum that probability over all i,
+over all words Wi, it sums to 1. So if we look at this probability, the probability of word i
+given the code input C. If we sum over all possible
+words in a vocabulary, it sums to 1 as probabilities must. This is a neural model for text,
+and so the input of the network is the particular word that
+we're examining in our document. And the output of the network tells
+us the probability with which each of the words in our vocabulary will be in
+the neighborhood of that input word. Remember the concept of Word2Vec,
+and remember that the idea is that if words are nearby and
+embedding space or nearby in vector space, then we would expect that those
+words are related to each other. And so this concept of a word
+in our vocabulary being in a neighborhood within the text
+of a particular word is related to this concept of relatedness or
+physical proximity of words. So this multilayer perceptron idea is
+going to give us the foundation for how we're going to do learning
+of the word vectors and also the parameters of
+this multi lab perceptron. So this basic neural model of text
+is going to be our foundation for learning the word vectors. And then learning how to
+make predictions about documents based upon the word
+vectors that we learn.

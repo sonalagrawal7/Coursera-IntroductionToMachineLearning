@@ -1,0 +1,82 @@
+So we've introduced the idea of
+mapping every word to a vector. And I just want to underscore that we
+really have to do something like this because words are composed of letters or
+phenoms, they are not numbers. And to do analysis on a computer or
+with an algorithm, we have to have a way of mapping words
+to numbers with which we can analyze. And so this concept of mapping every
+word to a vector is fundamental. So now what we would like to do is to
+look at this a little bit more deeply and provide some more details on this concept. And so this idea of modeling words or mapping words to vectors
+is called Word2Vec, so very natural and so
+very widely term Word2Vec. Each of those vectors that
+is associated with a given word is often sometimes
+called an embedding. So this is just purely
+to introduce jargon or nomenclature that you might see
+as you read about these concept. So the idea of mapping every
+word to a vector is related to the concept of mapping
+every word to an embedding. And what this means is that
+the idea of embedding is to embed the word in some feature space. So we think back to the globe, the picture
+of the map that we looked at previously. That's a two-dimensional space,
+and we're going to, in that case, take every word and
+embed it in a two-dimensional space. So sometimes this Word2Vec concept is
+also sometimes called in embedding. So let's let w sub i correspond to a word. So w just represents a particular word,
+is just a symbol to represent a word. And let's let w i represent
+the ith word in our vocabulary. And so the idea of this word embedding
+is that we're going to take that word, the ith word and map it to,
+in this case an m dimensional vector. So that's m numbers. In the simple two dimensional case, where we were looking at the globe and
+the map, m was equal to 2. But we do not have to restrict ourselves
+to that, so typically, m might be 100, or 200 it depends upon the problem
+that we're trying to solve. So the key idea to this Word2Vec concept, mapping every word to a vector,
+or achieving a so called embedding is that we're going to
+map each word to an m dimensional vector. The value of m which mean the
+dimensionality of that vector is dependent upon the particular problem that we choose
+and we can choose different values of m. So to think about this conceptually. Imagine that we have a vocabulary
+which is composed of v words. And so w(1) represents word one,
+w(2) represents word two, through w(V),
+which represents the Vth word. This is our vocabulary. Whenever we do this Word2Vec
+concept what we're going to achieve is a mapping from every word in our
+vocabulary, w(1) through w(V) is going to be mapped to a vector which we'll
+call vector 1 will be C(1). C1 is the vector associated with word one. C2 is the vector associated with word two,
+etc. Each of these vectors is m-dimensional. So this is what we're going to
+achieve with the Word2Vec concept. Now at this point, it's not clear how
+we would actually achieve this, how we would actually learn this relationship,
+we would consider that subsequently. But right now we are just trying
+to introduce the concept. And so what we are going to do
+then is after we do this learning, we manifest what we call a codebook, which is a set of the V
+vectors associated with each of the V words in our vocabulary. So each vector C(i) is
+associated with the word w(i). And then the thing that we hope
+to achieve is that if two words are similar to each other,
+synonymous, or related to each other. We want those words to have
+vectors that are similar or nearby each other in
+this m dimensional space. And then we're going to
+learn those vectors C(1) thru C(V) base upon
+a large corpus of text. And so the idea through this
+learning process is to achieve this concept of proximity and
+this m-dimensional vector space is connected to relatedness
+of the associated words. So to give a little bit of an example. Consider the situation for
+which we have six words. So this is an example of text. Typically we consider what we call bos,
+which is beginning of sentence, we have a token, which represents
+the beginning of sentence. And then we have another token which
+represents the end of sentence just so that the natural language mode
+knows when the sentence starts and when the sentence ends. And then each one, whenever we
+have a situation in which we have, in this case, six words, those six words, which are members of a vocabulary
+are now mapped to six codes, or C(w1) corresponds to the code for
+the first word. And C(w6) corresponds to the code for
+the sixth word in this example. And so once we have achieved this mapping,
+where we can take the words, the actual words of a vocabulary and
+map them into numbers, which are represented in this case
+by six m-dimensional vectors, which, of course, are composed of numbers. Once we have achieved this mapping,
+we're now prepared to do analysis on a computer,
+because now it's ready for mathematics. So the question now that
+we need to think about is, how would we actually
+learn these word vectors? How do we learn these word vectors
+such that they allow us to do the natural language
+processing which is our goal. So as we move forward we'll start to
+develop multiple different ways to do this. So in fact, there's not one
+way to learn the relationship between words and vectors,
+there are multiple ways. And these often,
+they perform the multiple different ways, often yield very similar results. And so this is important because it
+implies that this concept is very robust. It's not that dependent on
+the particular methodology you use, there are multiple methodologies
+that yield very effective results. Now as we step forward
+we'll start to dive in to the techniques to learn
+these word embeddings
