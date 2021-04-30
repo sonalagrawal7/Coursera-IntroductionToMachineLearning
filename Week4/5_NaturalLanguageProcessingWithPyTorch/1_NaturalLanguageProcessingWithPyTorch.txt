@@ -1,0 +1,14 @@
+Like computer vision, natural
+language processing has undergone a significant
+transformation with introduction
+of deep learning. Here, we'll introduce a few
+of the relevant concepts. In particular, Module 4 introduced the concept
+of a word embedding, which is a vectorized
+representation of a word that carry some meaning. Here, we'll have some fun with some pre-trained word
+embeddings and see how we can use them to find similar words and
+solve word analogies. We'll also train a very simple neural network model
+that learns how to use word embeddings to predict the sentiment of
+some movie reviews. We'll conclude with
+a brief overview of recurrent neural
+networks in PyTorch. For the assignment, you'll train a few different
+types of models on a top classification data set and compare the performance.
